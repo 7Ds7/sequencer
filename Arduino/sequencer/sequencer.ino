@@ -10,6 +10,8 @@ const int ledStep6 = 7;
 const int ledStep7 = 8;
 const int ledStep8 = 9;
 
+const int gate = 13;
+
 const int button1 = 11;
 const int button2 = 12;
 const int pot1 = A5;
@@ -36,6 +38,7 @@ void setup() {
   pinMode(ledStep6, OUTPUT);
   pinMode(ledStep7, OUTPUT);
   pinMode(ledStep8, OUTPUT);
+  pinMode(gate, OUTPUT);
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);
   pinMode(pot1, INPUT);
@@ -47,12 +50,14 @@ void turnAllOff() {
   for ( int i= 0; i <= 7; i++ ) {
     digitalWrite(stepArray[i], LOW);
   }
+  digitalWrite(gate, LOW);
 }
 
 void regularPlay() {
   Serial.println("regularPlay");
   turnAllOff();
   digitalWrite(stepArray[stepCounter], HIGH);
+  digitalWrite(gate, HIGH);
 
   stepCounter++;
   if ( stepCounter >= 8 ) {
@@ -64,6 +69,7 @@ void reversePlay() {
   Serial.println("reversePlay");
   turnAllOff();
   digitalWrite(stepArray[stepCounter], HIGH);
+  digitalWrite(gate, HIGH);
 
   stepCounter--;
   if ( stepCounter <= -1 ) {
@@ -77,6 +83,7 @@ void doublePlay() {
 
   digitalWrite(stepArray[stepCounter], HIGH);      
   digitalWrite(stepArray[stepCounter+4], HIGH);
+  digitalWrite(gate, HIGH);
 
   stepCounter++;
   if ( stepCounter >= 4 ) {
@@ -99,6 +106,7 @@ void randomPlay() {
   Serial.println(ARRAYSIZE(randArray) );
   int arr_access = randArray[random(0, 8)];
   digitalWrite( arr_access, HIGH);
+  digitalWrite(gate, HIGH);
   //remove_element(arr_access
   stepCounter++;
   if ( stepCounter >= 8 ) {
