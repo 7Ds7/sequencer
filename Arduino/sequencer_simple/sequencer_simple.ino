@@ -14,7 +14,7 @@ const int gate = 13;
 
 const int button1 = 11;
 const int button2 = 12;
-const int pot1 = A5;
+const int pot1 = A0;
 
 int stepArray[] = {ledStep1, ledStep2, ledStep3, ledStep4, ledStep5, ledStep6, ledStep7, ledStep8};
 int randArray[8];
